@@ -16,9 +16,10 @@ const fadeUp = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
-      delay,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.8,
+      delay: 0.2,
+      ease: "easeOut",
+
     },
   }),
 };
@@ -321,9 +322,9 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  delay: 0.55 + index * 0.12,
-                  duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1],
+                    duration: 0.8,
+                    delay: 0.2,
+                    ease: "easeOut",
                 }}
                 whileHover={{ y: -6, scale: 1.01 }}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
