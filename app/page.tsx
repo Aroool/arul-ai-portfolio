@@ -10,20 +10,6 @@ type ChatMessage = {
   content: string;
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      delay: 0.2,
-      ease: "easeOut",
-
-    },
-  }),
-};
-
 export default function HomePage() {
   const suggestedQuestions = [
     "Who is Arul?",
@@ -42,7 +28,7 @@ export default function HomePage() {
     {
       role: "assistant",
       content:
-        "Hi — I’m Arul’s AI. Ask me about his work, projects, skills, or open-source contributions.",
+        "I’m Arul’s AI — here to help you explore his projects, engineering background, technical strengths, and open-source work.",
     },
   ]);
 
@@ -156,12 +142,12 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden bg-black text-white">
       <div className="fixed inset-0 -z-10">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
+          transition={{ duration: 1 }}
           className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(34,211,238,0.08),transparent_24%),radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.08),transparent_30%)]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:56px_56px]" />
@@ -211,74 +197,58 @@ export default function HomePage() {
       <main>
         <section className="mx-auto flex min-h-[calc(100vh-77px)] max-w-7xl flex-col items-center justify-center px-6 py-14 text-center">
           <motion.div
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
             className="relative"
           >
             <motion.div
-              custom={0}
-              variants={fadeUp}
-              className="relative"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="relative flex h-44 w-44 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
             >
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="relative flex h-44 w-44 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
-              >
-                <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
-                  <Image
-                    src="/profile.jpg"
-                    alt="Arulprashath"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              </motion.div>
+              <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
+                <Image
+                  src="/profile.jpg"
+                  alt="Arulprashath"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </motion.div>
 
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                className="absolute -bottom-1 -right-1 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-bold text-white shadow-[0_0_30px_rgba(168,85,247,0.45)]"
-              >
-                ✦
-              </motion.div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 8, repeat: Infinity }}
+              className="absolute -bottom-1 -right-1 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-bold text-white shadow-[0_0_30px_rgba(168,85,247,0.45)]"
+            >
+              ✦
             </motion.div>
           </motion.div>
 
           <motion.h1
-            custom={0.1}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-8 text-5xl font-semibold tracking-tight md:text-7xl"
           >
             Arulprashath
           </motion.h1>
 
           <motion.p
-            custom={0.2}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-4 text-xl font-medium text-fuchsia-300 md:text-2xl"
           >
             Software Engineer · AI Builder · Open Source Contributor
           </motion.p>
 
           <motion.a
-            custom={0.3}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
             href="#main-chat"
             className="mt-5 inline-flex items-center rounded-full border border-fuchsia-400/25 bg-fuchsia-500/10 px-5 py-2 text-sm font-medium text-fuchsia-200 transition hover:scale-[1.02] hover:bg-fuchsia-500/15"
           >
@@ -286,10 +256,9 @@ export default function HomePage() {
           </motion.a>
 
           <motion.p
-            custom={0.4}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-6 max-w-3xl text-base leading-8 text-white/70 md:text-lg"
           >
             I build intelligent software, developer tools, and AI-powered
@@ -297,10 +266,9 @@ export default function HomePage() {
           </motion.p>
 
           <motion.div
-            custom={0.5}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-12 grid w-full max-w-5xl gap-6 md:grid-cols-3"
           >
             {[
@@ -316,16 +284,9 @@ export default function HomePage() {
                 title: "Open Source",
                 desc: "Public engineering proof through real contributions.",
               },
-            ].map((item, index) => (
+            ].map((item) => (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                    duration: 0.8,
-                    delay: 0.2,
-                    ease: "easeOut",
-                }}
                 whileHover={{ y: -6, scale: 1.01 }}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
               >
@@ -338,10 +299,9 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div
-            custom={0.7}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-10 flex flex-wrap justify-center gap-4"
           >
             <a
@@ -408,23 +368,23 @@ export default function HomePage() {
 
             <div
               ref={mainChatMessagesRef}
-              className="mb-4 h-[360px] space-y-4 overflow-y-auto rounded-[1.5rem] bg-[#08111f] p-5"
+              className="mb-4 h-[360px] space-y-5 overflow-y-auto rounded-[1.5rem] bg-[#08111f] p-5"
             >
               {messages.map((message, index) => (
-  <div
-    key={index}
-    className={
-      message.role === "user"
-        ? "ml-auto w-fit max-w-[75%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 px-5 py-3 text-sm leading-7 text-fuchsia-50 shadow-[0_0_20px_rgba(168,85,247,0.08)]"
-        : "w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-5 py-4 text-sm leading-7 text-white/85 backdrop-blur-xl"
-    }
-  >
-    {message.content}
-  </div>
-))}
+                <div
+                  key={index}
+                  className={
+                    message.role === "user"
+                      ? "ml-auto w-fit max-w-[75%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 px-5 py-3 text-sm leading-7 text-fuchsia-50 shadow-[0_0_20px_rgba(168,85,247,0.08)]"
+                      : "w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-5 py-4 text-sm leading-7 text-white/85 backdrop-blur-xl"
+                  }
+                >
+                  {message.content}
+                </div>
+              ))}
 
               {loading && (
-                <div className="max-w-[90%] rounded-2xl border border-white/6 bg-white/[0.045] p-4">
+                <div className="w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-5 py-4">
                   <div className="flex items-center gap-2">
                     <span className="h-2 w-2 animate-bounce rounded-full bg-white/60 [animation-delay:-0.3s]" />
                     <span className="h-2 w-2 animate-bounce rounded-full bg-white/60 [animation-delay:-0.15s]" />
@@ -477,7 +437,6 @@ export default function HomePage() {
             <motion.div
               initial={{ opacity: 0, y: 16, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               className="mb-4 w-[340px] rounded-[1.5rem] border border-violet-400/20 bg-[linear-gradient(180deg,rgba(10,16,30,0.96),rgba(7,12,24,0.96))] p-4 shadow-[0_0_40px_rgba(139,92,246,0.22)] backdrop-blur-2xl"
             >
@@ -511,8 +470,8 @@ export default function HomePage() {
                     key={index}
                     className={
                       message.role === "user"
-                      ? "ml-auto w-fit max-w-[75%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 px-4 py-3 text-xs leading-6 text-fuchsia-50"
-                      : "w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-5 py-4 text-sm leading-7 text-white/85 backdrop-blur-xl"
+                        ? "ml-auto w-fit max-w-[75%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 px-4 py-3 text-xs leading-6 text-fuchsia-50"
+                        : "w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-4 py-3 text-xs leading-6 text-white/85"
                     }
                   >
                     {message.content}
@@ -520,7 +479,7 @@ export default function HomePage() {
                 ))}
 
                 {loading && (
-                  <div className="max-w-[90%] rounded-2xl border border-white/6 bg-white/[0.045] p-3">
+                  <div className="w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-4 py-3">
                     <div className="flex items-center gap-2">
                       <span className="h-2 w-2 animate-bounce rounded-full bg-white/60 [animation-delay:-0.3s]" />
                       <span className="h-2 w-2 animate-bounce rounded-full bg-white/60 [animation-delay:-0.15s]" />
@@ -558,11 +517,7 @@ export default function HomePage() {
                 "0 0 20px rgba(217,70,239,0.25)",
               ],
             }}
-            transition={{
-              duration: 2.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            transition={{ duration: 2.2, repeat: Infinity }}
             className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-xl text-white transition hover:scale-105"
           >
             ✦
