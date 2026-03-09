@@ -2,11 +2,25 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 type ChatMessage = {
   role: "user" | "assistant";
   content: string;
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
 };
 
 export default function HomePage() {
@@ -141,9 +155,14 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(34,211,238,0.08),transparent_24%),radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.08),transparent_30%)]" />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(34,211,238,0.08),transparent_24%),radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.08),transparent_30%)]"
+        />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:56px_56px]" />
         <div className="absolute inset-0 backdrop-blur-3xl" />
       </div>
@@ -190,68 +209,140 @@ export default function HomePage() {
 
       <main>
         <section className="mx-auto flex min-h-[calc(100vh-77px)] max-w-7xl flex-col items-center justify-center px-6 py-14 text-center">
-          <div className="relative">
-            <div className="relative flex h-44 w-44 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]">
-              <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
-                <Image
-                  src="/profile.jpg"
-                  alt="Arul Prashath"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
+          <motion.div
+            initial="hidden"
+            animate="show"
+            className="relative"
+          >
+            <motion.div
+              custom={0}
+              variants={fadeUp}
+              className="relative"
+            >
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative flex h-44 w-44 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
+              >
+                <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
+                  <Image
+                    src="/profile.jpg"
+                    alt="Arulprashath"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </motion.div>
 
-            <div className="absolute -bottom-1 -right-1 flex h-14 w-14 animate-spin items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-bold text-white shadow-[0_0_30px_rgba(168,85,247,0.45)] [animation-duration:6s]">
-              ✦
-            </div>
-          </div>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="absolute -bottom-1 -right-1 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-bold text-white shadow-[0_0_30px_rgba(168,85,247,0.45)]"
+              >
+                ✦
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
-          <h1 className="mt-8 text-5xl font-semibold tracking-tight md:text-7xl">
+          <motion.h1
+            custom={0.1}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-8 text-5xl font-semibold tracking-tight md:text-7xl"
+          >
             Arulprashath
-          </h1>
+          </motion.h1>
 
-          <p className="mt-4 text-xl font-medium text-fuchsia-300 md:text-2xl">
+          <motion.p
+            custom={0.2}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-4 text-xl font-medium text-fuchsia-300 md:text-2xl"
+          >
             Software Engineer · AI Builder · Open Source Contributor
-          </p>
+          </motion.p>
 
-          <a
+          <motion.a
+            custom={0.3}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
             href="#main-chat"
             className="mt-5 inline-flex items-center rounded-full border border-fuchsia-400/25 bg-fuchsia-500/10 px-5 py-2 text-sm font-medium text-fuchsia-200 transition hover:scale-[1.02] hover:bg-fuchsia-500/15"
           >
             Talk to Arul AI →
-          </a>
+          </motion.a>
 
-          <p className="mt-6 max-w-3xl text-base leading-8 text-white/70 md:text-lg">
+          <motion.p
+            custom={0.4}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-6 max-w-3xl text-base leading-8 text-white/70 md:text-lg"
+          >
             I build intelligent software, developer tools, and AI-powered
             products with a strong focus on practical, real-world usability.
-          </p>
+          </motion.p>
 
-          <div className="mt-12 grid w-full max-w-5xl gap-6 md:grid-cols-3">
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="text-lg font-semibold">AI Systems</p>
-              <p className="mt-2 text-sm leading-7 text-white/65">
-                LLM apps, RAG workflows, and smart user experiences.
-              </p>
-            </div>
+          <motion.div
+            custom={0.5}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-12 grid w-full max-w-5xl gap-6 md:grid-cols-3"
+          >
+            {[
+              {
+                title: "AI Systems",
+                desc: "LLM apps, RAG workflows, and smart user experiences.",
+              },
+              {
+                title: "Projects",
+                desc: "Full-stack and product-style builds focused on impact.",
+              },
+              {
+                title: "Open Source",
+                desc: "Public engineering proof through real contributions.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: 0.55 + index * 0.12,
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
+              >
+                <p className="text-lg font-semibold">{item.title}</p>
+                <p className="mt-2 text-sm leading-7 text-white/65">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="text-lg font-semibold">Projects</p>
-              <p className="mt-2 text-sm leading-7 text-white/65">
-                Full-stack and product-style builds focused on impact.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <p className="text-lg font-semibold">Open Source</p>
-              <p className="mt-2 text-sm leading-7 text-white/65">
-                Public engineering proof through real contributions.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <motion.div
+            custom={0.7}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-10 flex flex-wrap justify-center gap-4"
+          >
             <a
               href="#main-chat"
               className="rounded-2xl bg-white px-6 py-3 font-medium text-black transition hover:scale-[1.02]"
@@ -265,11 +356,17 @@ export default function HomePage() {
             >
               View Projects
             </Link>
-          </div>
+          </motion.div>
         </section>
 
         <section className="mx-auto max-w-5xl px-6 pb-24">
-          <div className="mb-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7 }}
+            className="mb-10 text-center"
+          >
             <p className="text-sm uppercase tracking-[0.35em] text-white/40">
               AI Chat
             </p>
@@ -279,11 +376,15 @@ export default function HomePage() {
             <p className="mt-4 text-base leading-8 text-white/65">
               Explore Arul’s background, projects, skills, and public work.
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
             id="main-chat"
             ref={mainChatRef}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.75 }}
             className="rounded-[2rem] border border-violet-400/20 bg-[linear-gradient(180deg,rgba(10,16,30,0.96),rgba(7,12,24,0.96))] p-4 shadow-[0_0_60px_rgba(139,92,246,0.14)] backdrop-blur-2xl"
           >
             <div className="mb-4 flex items-center justify-between rounded-[1.5rem] bg-gradient-to-r from-fuchsia-500/18 via-violet-500/16 to-cyan-400/12 px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
@@ -360,14 +461,25 @@ export default function HomePage() {
                 </button>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
 
       {!isMainChatVisible && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="fixed bottom-6 right-6 z-50"
+        >
           {isFloatingOpen && (
-            <div className="mb-4 w-[340px] rounded-[1.5rem] border border-violet-400/20 bg-[linear-gradient(180deg,rgba(10,16,30,0.96),rgba(7,12,24,0.96))] p-4 shadow-[0_0_40px_rgba(139,92,246,0.22)] backdrop-blur-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 16, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="mb-4 w-[340px] rounded-[1.5rem] border border-violet-400/20 bg-[linear-gradient(180deg,rgba(10,16,30,0.96),rgba(7,12,24,0.96))] p-4 shadow-[0_0_40px_rgba(139,92,246,0.22)] backdrop-blur-2xl"
+            >
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-sm text-white">
@@ -432,16 +544,29 @@ export default function HomePage() {
                   Send
                 </button>
               </form>
-            </div>
+            </motion.div>
           )}
 
-          <button
+          <motion.button
             onClick={() => setIsFloatingOpen((prev) => !prev)}
-            className="flex h-16 w-16 animate-bounce items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-xl text-white shadow-[0_0_35px_rgba(217,70,239,0.45)] transition hover:scale-105"
+            animate={{
+              y: [0, -8, 0],
+              boxShadow: [
+                "0 0 20px rgba(217,70,239,0.25)",
+                "0 0 36px rgba(217,70,239,0.45)",
+                "0 0 20px rgba(217,70,239,0.25)",
+              ],
+            }}
+            transition={{
+              duration: 2.2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-xl text-white transition hover:scale-105"
           >
             ✦
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       )}
     </div>
   );
