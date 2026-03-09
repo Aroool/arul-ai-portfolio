@@ -410,17 +410,17 @@ export default function HomePage() {
               className="mb-4 h-[360px] space-y-4 overflow-y-auto rounded-[1.5rem] bg-[#08111f] p-5"
             >
               {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={
-                    message.role === "user"
-                      ? "ml-auto max-w-[85%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 p-4 text-sm leading-7 text-fuchsia-50 shadow-[0_0_20px_rgba(168,85,247,0.08)]"
-                      : "max-w-[90%] rounded-2xl border border-white/6 bg-white/[0.045] p-4 text-sm leading-7 text-white/85 backdrop-blur-xl"
-                  }
-                >
-                  {message.content}
-                </div>
-              ))}
+  <div
+    key={index}
+    className={
+      message.role === "user"
+        ? "ml-auto w-fit max-w-[75%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 px-5 py-3 text-sm leading-7 text-fuchsia-50 shadow-[0_0_20px_rgba(168,85,247,0.08)]"
+        : "w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-5 py-4 text-sm leading-7 text-white/85 backdrop-blur-xl"
+    }
+  >
+    {message.content}
+  </div>
+))}
 
               {loading && (
                 <div className="max-w-[90%] rounded-2xl border border-white/6 bg-white/[0.045] p-4">
@@ -510,8 +510,8 @@ export default function HomePage() {
                     key={index}
                     className={
                       message.role === "user"
-                        ? "ml-auto max-w-[85%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 p-3 text-xs leading-6 text-fuchsia-50"
-                        : "max-w-[90%] rounded-2xl border border-white/6 bg-white/[0.045] p-3 text-xs leading-6 text-white/85"
+                      ? "ml-auto w-fit max-w-[75%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 px-4 py-3 text-xs leading-6 text-fuchsia-50"
+                      : "w-fit max-w-[70%] rounded-2xl border border-white/6 bg-[#0f1b2d] px-5 py-4 text-sm leading-7 text-white/85 backdrop-blur-xl"
                     }
                   >
                     {message.content}
