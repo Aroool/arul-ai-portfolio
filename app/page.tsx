@@ -209,7 +209,7 @@ export default function HomePage() {
             >
               <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
                 <Image
-                  src="/profile.jpg"
+                  src="public/profile.jpg"
                   alt="Arulprashath"
                   fill
                   className="object-cover"
