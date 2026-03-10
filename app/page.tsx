@@ -202,21 +202,23 @@ export default function HomePage() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="relative flex h-49 w-49 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
-            >
-              <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
-                <Image
-                  src="public/profile.jpg"
-                  alt="Arulprashath"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </motion.div>
+<motion.div
+  animate={{ y: [0, -8, 0] }}
+  transition={{ duration: 4, repeat: Infinity }}
+  className="relative flex h-44 w-44 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
+>
+  <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
+    <Image
+      src="/profile.jpg"
+      alt="Arulprashath"
+      fill
+      unoptimized
+      sizes="176px"
+      className="object-cover object-center"
+      priority
+    />
+  </div>
+</motion.div>
 
             <motion.div
               animate={{ rotate: 360 }}
