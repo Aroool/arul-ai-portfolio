@@ -205,7 +205,7 @@ export default function HomePage() {
 <motion.div
   animate={{ y: [0, -8, 0] }}
   transition={{ duration: 4, repeat: Infinity }}
-  className="relative flex h-44 w-44 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
+  className="relative flex h-50 w-50 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
 >
   <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
     <Image
