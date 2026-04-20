@@ -28,7 +28,7 @@ export default function HomePage() {
     {
       role: "assistant",
       content:
-        "I’m Arul’s AI — here to help you explore his projects, engineering background, technical strengths, and open-source work.",
+        "I'm Arul's AI — here to help you explore his projects, engineering background, technical strengths, and open-source work.",
     },
   ]);
 
@@ -44,9 +44,7 @@ export default function HomePage() {
           setIsFloatingOpen(false);
         }
       },
-      {
-        threshold: 0.35,
-      }
+      { threshold: 0.35 }
     );
 
     if (mainChatRef.current) {
@@ -83,11 +81,7 @@ export default function HomePage() {
 
     if (!finalMessage || loading) return;
 
-    const userMessage: ChatMessage = {
-      role: "user",
-      content: finalMessage,
-    };
-
+    const userMessage: ChatMessage = { role: "user", content: finalMessage };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setFloatingInput("");
@@ -96,12 +90,8 @@ export default function HomePage() {
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: finalMessage,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt: finalMessage }),
       });
 
       const data = await response.json();
@@ -112,10 +102,7 @@ export default function HomePage() {
 
       setMessages((prev) => [
         ...prev,
-        {
-          role: "assistant",
-          content: data.reply,
-        },
+        { role: "assistant", content: data.reply },
       ]);
     } catch (error) {
       console.error(error);
@@ -142,59 +129,17 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-black text-white">
-      <div className="fixed inset-0 -z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(34,211,238,0.08),transparent_24%),radial-gradient(circle_at_20%_80%,rgba(236,72,153,0.08),transparent_30%)]"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:56px_56px]" />
-        <div className="absolute inset-0 backdrop-blur-3xl" />
-      </div>
-
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-white shadow-[0_0_25px_rgba(168,85,247,0.35)]">
-              ✦
-            </div>
-            <span className="text-2xl font-semibold tracking-tight">
-              Arul.dev
-            </span>
-          </Link>
-
-          <nav className="hidden gap-8 md:flex">
-            <Link
-              href="/"
-              className="text-sm text-white transition hover:text-fuchsia-300"
-            >
-              Home
-            </Link>
-            <Link
-              href="/projects"
-              className="text-sm text-white/75 transition hover:text-fuchsia-300"
-            >
-              Projects
-            </Link>
-            <Link
-              href="/opensource"
-              className="text-sm text-white/75 transition hover:text-fuchsia-300"
-            >
-              Open Source
-            </Link>
-            <Link
-              href="/contact"
-              className="text-sm text-white/75 transition hover:text-fuchsia-300"
-            >
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="overflow-x-hidden">
+      {/* Animated gradient overlay unique to home page */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2 }}
+        className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.12),transparent_35%)]"
+      />
 
       <main>
+        {/* Hero */}
         <section className="mx-auto flex min-h-[calc(100vh-77px)] max-w-7xl flex-col items-center justify-center px-6 py-14 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -202,27 +147,27 @@ export default function HomePage() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-<motion.div
-  animate={{ y: [0, -8, 0] }}
-  transition={{ duration: 4, repeat: Infinity }}
-  className="relative flex h-50 w-50 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
->
-  <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
-    <Image
-      src="/profile.jpg"
-      alt="Arulprashath"
-      fill
-      unoptimized
-      sizes="176px"
-      className="object-cover object-center"
-      priority
-    />
-  </div>
-</motion.div>
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="relative flex h-50 w-50 items-center justify-center rounded-full border-4 border-fuchsia-500/80 bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-[0_0_90px_rgba(168,85,247,0.35)]"
+            >
+              <div className="absolute inset-[6px] overflow-hidden rounded-full bg-black/40">
+                <Image
+                  src="/profile.jpg"
+                  alt="Arulprashath"
+                  fill
+                  unoptimized
+                  sizes="176px"
+                  className="object-cover object-center"
+                  priority
+                />
+              </div>
+            </motion.div>
 
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
               className="absolute -bottom-1 -right-1 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 via-violet-500 to-cyan-400 text-base font-bold text-white shadow-[0_0_30px_rgba(168,85,247,0.45)]"
             >
               ✦
@@ -286,9 +231,12 @@ export default function HomePage() {
                 title: "Open Source",
                 desc: "Public engineering proof through real contributions.",
               },
-            ].map((item) => (
+            ].map((item, i) => (
               <motion.div
                 key={item.title}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.55 + i * 0.1 }}
                 whileHover={{ y: -6, scale: 1.01 }}
                 className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
               >
@@ -303,7 +251,7 @@ export default function HomePage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
             className="mt-10 flex flex-wrap justify-center gap-4"
           >
             <a
@@ -322,6 +270,7 @@ export default function HomePage() {
           </motion.div>
         </section>
 
+        {/* AI Chat section */}
         <section className="mx-auto max-w-5xl px-6 pb-24">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -337,7 +286,7 @@ export default function HomePage() {
               Ask Arul AI
             </h2>
             <p className="mt-4 text-base leading-8 text-white/65">
-              Explore Arul’s background, projects, skills, and public work.
+              Explore Arul&apos;s background, projects, skills, and public work.
             </p>
           </motion.div>
 
@@ -373,8 +322,11 @@ export default function HomePage() {
               className="mb-4 h-[360px] space-y-5 overflow-y-auto rounded-[1.5rem] bg-[#08111f] p-5"
             >
               {messages.map((message, index) => (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
                   className={
                     message.role === "user"
                       ? "ml-auto w-fit max-w-[75%] rounded-2xl border border-fuchsia-400/10 bg-gradient-to-br from-fuchsia-500/18 to-violet-500/14 px-5 py-3 text-sm leading-7 text-fuchsia-50 shadow-[0_0_20px_rgba(168,85,247,0.08)]"
@@ -382,7 +334,7 @@ export default function HomePage() {
                   }
                 >
                   {message.content}
-                </div>
+                </motion.div>
               ))}
 
               {loading && (
@@ -401,7 +353,7 @@ export default function HomePage() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask me anything about Arul..."
-                className="flex-1 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-white outline-none placeholder:text-white/35"
+                className="flex-1 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-violet-400/40 transition"
               />
               <button
                 type="submit"
@@ -414,20 +366,22 @@ export default function HomePage() {
 
             <div className="mt-5 flex flex-wrap gap-2">
               {suggestedQuestions.map((question) => (
-                <button
+                <motion.button
                   key={question}
                   type="button"
+                  whileHover={{ scale: 1.03 }}
                   onClick={() => sendMessage(question, "main")}
                   className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 transition hover:bg-white/10"
                 >
                   {question}
-                </button>
+                </motion.button>
               ))}
             </div>
           </motion.div>
         </section>
       </main>
 
+      {/* Floating chat button */}
       {!isMainChatVisible && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 20 }}
@@ -457,7 +411,7 @@ export default function HomePage() {
 
                 <button
                   onClick={() => setIsFloatingOpen(false)}
-                  className="text-sm text-white/60 hover:text-white"
+                  className="text-sm text-white/60 hover:text-white transition"
                 >
                   ✕
                 </button>
