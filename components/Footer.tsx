@@ -1,10 +1,11 @@
 import Link from "next/link";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
     <footer className="border-t border-white/10 bg-black/40 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-white/40 md:flex-row">
-        <p>© 2025 Arulprashath. Built with Next.js & Framer Motion.</p>
+        <p>© {year} Arulprashath. Built with Next.js & Framer Motion.</p>
         <div className="flex gap-6">
           {[
             { href: "/", label: "Home" },
