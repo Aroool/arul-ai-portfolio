@@ -166,7 +166,7 @@ export default function ProjectsContent({
           </a>
         </div>
 
-        <div className="mt-6 grid grid-cols-10 gap-2 md:grid-cols-15 lg:grid-cols-30">
+        <div className="mt-6 grid grid-cols-[repeat(10,minmax(0,1fr))] gap-2">
           {heatmapDays.map((count, index) => (
             <motion.div
               key={index}
